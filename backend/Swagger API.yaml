@@ -22,7 +22,7 @@ paths:
       tags:
         - Profiles
       summary: Get profile names
-      description: Get all active trader profiles
+      description: Get all names of active trader profiles
       operationId: getProfiles
       responses:
         '200':
@@ -67,6 +67,13 @@ paths:
             example: "Denis"
           description: The user name
         - in: query
+          name: indicator
+          required: true
+          schema:
+            type: string
+            example: Q_indicator
+          description: Name of indicator or just "price" (which сorresponds with table name)
+        - in: query
           name: timeframe
           required: true
           schema:
@@ -88,8 +95,8 @@ components:
       type: array
       items:
         type: string
-      example: ["Denis", "Daniil", "KVF"]
       uniqueItems: true
+      example: ["Denis", "Daniil", "KVF"]
     Configuration:
       required:
         - name
@@ -99,6 +106,11 @@ components:
         start-time:
           type: string
           format: date-time
+        indicators:
+          type: array
+          items:
+            type: string
+          example: [ "Q_indicator" ]
         configuration:  # TODO
           type: object
     HistoricalData:
