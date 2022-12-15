@@ -1,0 +1,30 @@
+[metadata]
+name = {{packageName}}
+version = {{appVersion}}
+description = {{appDescription}}
+long_description = file: README.md
+keywords = OpenAPI {{appName}}
+python_requires = >= {{{generatorLanguageVersion}}}.*
+classifiers =
+    Operating System :: OS Independent
+    Programming Language :: Python :: 3
+    Programming Language :: Python :: {{{generatorLanguageVersion}}}
+
+[options]
+install_requires =
+    SQLAlchemy >= 1.4.42
+    PyMySQL >= 1.0.2
+    fastapi[all] >= 0.85.0
+    uvicorn >= 0.13.4
+setup_requires =
+    setuptools
+package_dir=
+    =src
+packages=find_namespace:
+
+[options.packages.find]
+where=src
+
+[options.entry_points]
+console_scripts =
+    TViewer-server = TViewer.start:start_server
