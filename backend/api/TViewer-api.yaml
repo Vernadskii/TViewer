@@ -13,14 +13,14 @@ info:
 #   - url: https://petstore3.swagger.io/api/v3
 
 tags:
-  - name: Profiles
+  - name: profiles
     description: Everything about our profiles
 
 paths:
   /profiles:
     get:
       tags:
-        - Profiles
+        - profiles
       summary: Get profile names and indicators
       description: Get all names of active trader profiles with indicators
       operationId: getProfiles
@@ -34,7 +34,7 @@ paths:
   /profiles/{name}/configuration/:
     get:
       tags:
-        - Profiles
+        - profiles
       summary: Get profile configuration
       description: Get details of trading configuration
       parameters:
@@ -44,7 +44,7 @@ paths:
           schema:
             type: string
             example: "Denis"
-          description: The user name
+          description: The profile name
       responses:
         '200':
           description: Successful operation
@@ -55,7 +55,7 @@ paths:
   /profiles/{name}/historical-data/:
     get:
       tags:
-        - Profiles
+        - profiles
       summary: Get data for candlesticks
       description: Get **historical data** in format of candlesticks with particular **timeframe**
       parameters:
@@ -65,7 +65,7 @@ paths:
           schema:
             type: string
             example: "Denis"
-          description: The user name
+          description: The profile name
         - in: query
           name: indicator
           required: true
@@ -118,9 +118,6 @@ components:
         configuration:  # TODO
           type: object
     HistoricalData:
-#      type: object
-#      properties:
-#        candles:
           type: array
           items:
             type: object
