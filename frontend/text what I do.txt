@@ -1,0 +1,4 @@
+source generate-API
+
+npm install -g typescript   # Install TypeScript compiler
+tsc --v # check version of the TypeScript compiler

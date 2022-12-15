@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "swagger-typescript-api": "^12.0.2"
+  }
+}

@@ -1,0 +1,4 @@
+#!/bin/bash
+
+npm i swagger-typescript-api
+npx swagger-typescript-api -p ../backend/api/TViewer-api.yaml -o ./src -n myApi.ts
