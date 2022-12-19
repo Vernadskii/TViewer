@@ -11,15 +11,14 @@ function Profile(): JSX.Element | null {
 
     return (
         <>
-            <InputGroup className="mb-3">
-                <InputGroup.Text>Profile:</InputGroup.Text>
-                <DropdownButton variant="outline-secondary" title="Name" id="input-group-dropdown-1" 
-                onSelect={handleSelect}>
-                    <Dropdown.Item eventKey="option-1">Denis</Dropdown.Item>
-                    <Dropdown.Item eventKey="option-2">Daniil</Dropdown.Item>
-                    <Dropdown.Item eventKey="option-3">KVF</Dropdown.Item>
-                </DropdownButton>
-            </InputGroup>
+            <Form.Group className="mb-3" controlId="formProfile">
+                    <Form.Label>Profile:</Form.Label>
+                    <Form.Select aria-label="Select profile">
+                        <option value="1">Denis</option>
+                        <option value="2">Daniil</option>
+                        <option value="3">KVF</option>
+                    </Form.Select>
+            </Form.Group>
         </>
     );
 }
