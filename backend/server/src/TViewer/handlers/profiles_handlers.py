@@ -1,6 +1,7 @@
 from TViewer.models.configuration import Configuration
 from TViewer.models.historical_data_inner import HistoricalDataInner
 from TViewer.models.profiles_inner import ProfilesInner
+from TViewer.models.trades_inner import TradesInner
 from typing import List
 import mysql.connector
 
@@ -28,7 +29,7 @@ async def handle_get_profiles() -> list[ProfilesInner]:
         result.append(
             ProfilesInner(
                 name=_user, indicators=[table[0] for table in mycursor.fetchall()
-                                        if table[0] not in ["Configuration"]])
+                                        if table[0] not in ["Configuration", "Trades"]])
         )
     return result
 
@@ -36,6 +37,27 @@ async def handle_get_profiles() -> list[ProfilesInner]:
 async def handle_profiles_name_configuration_get(
         profile_name: str) -> Configuration:
     pass
+
+
+async def handle_profiles_name_trades_get(name: str) -> List[TradesInner]:
+    mydb = mysql.connector.connect(
+        host=DBUser.host,
+        port=DBUser.port,
+        user=DBUser.user,
+        password=DBUser.password,
+        database=name
+    )
+    mycursor = mydb.cursor()
+    mycursor.execute(
+        f"""SELECT `Time`, Price, Side, Size
+        FROM Trades;""")
+
+    return [TradesInner(
+        time=i[0],
+        price=i[1],
+        side=i[2],
+        size=i[3]
+    ) for i in mycursor.fetchall()]
 
 
 async def handle_profiles_name_historical_data_get(

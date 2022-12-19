@@ -1,3 +1,3 @@
 #!/bin/bash
 
-java -DapiTests=false -jar ./openapi-generator/openapi-generator-cli.jar generate -g python-fastapi -i ./api/TViewer-api.yaml -o ./server -p packageName=TViewer,generatorLanguageVersion=3.11 -t ./openapi-generator/template
+java -DapiTests=false -jar ./openapi-generator/openapi-generator-cli.jar generate -g python-fastapi -i ../api/TViewer-api.yaml -o ./server -p packageName=TViewer,generatorLanguageVersion=3.11 -t ./openapi-generator/template

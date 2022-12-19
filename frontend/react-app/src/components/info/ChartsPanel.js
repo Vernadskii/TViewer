@@ -25,8 +25,8 @@ function ChartsPanel({settings}/*:Settings*/) /*:JSX.Element | null*/ {
       }, [settings]
     )
 
-    if (isLoading) return <p>'Loading...'</p>;
-    if (error) return <p>'An error has occurred'</p>;
+    if (isLoading) return <p>Loading...</p>;
+    if (error) return <p>An error has occurred</p>;
 
     return (
         <>

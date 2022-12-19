@@ -36,10 +36,34 @@ export default function Chart({settings}: ChartSettings){
     }
   }, [settings, data]);
 
-  if (isLoading) return <p>'Loading...'</p>;
-  if (error) return <p>'An error has occurred'</p>;
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>An error has occurred</p>;
 
   var options: ApexOptions = {
+    annotations: {
+      points: [
+        {
+          x: new Date('2023-01-09 09:17:42.646').getTime(), //"2023-01-09 09:17:42.646",
+          y: 17300,
+          marker: {
+            size: 6,
+            fillColor: "#fff",
+            strokeColor: "#2698FF",
+            radius: 2
+          },
+          label: {
+            borderColor: "#FF4560",
+            offsetY: 0,
+            style: {
+              color: "#fff",
+              background: "#FF4560"
+            },
+  
+            text: "Point Annotation (XY)"
+          }
+        }
+      ]
+    },
     chart: {
       // group: 'social',
       id: `basic-bar ${settings.chartName}`,

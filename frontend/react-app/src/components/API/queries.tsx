@@ -21,6 +21,23 @@ export const useProfiles = () => {
     });
 };
 
+export const useTrades = (profile: string) => {
+  return useQuery({
+    queryKey: [`get-profiles-trades-${profile}`],
+    queryFn: async () => {
+      let a;
+      try {
+        const res = await api.profiles.tradesDetail(profile, {baseUrl: baseBackendUrl});
+        a = res.data;
+        return a;
+      } catch (err) {
+        return a;
+      }
+    },
+    refetchOnWindowFocus: false,
+  });
+};
+
 export const useHistoricalDataDetail = (profile: string, queries: any) => {
   return useQuery({
     queryKey: [`getHistoricalDataDetail-${profile}-${queries.indicator}-${queries.timeframe}`],

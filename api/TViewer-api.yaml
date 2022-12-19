@@ -52,6 +52,27 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Configuration'
+  /profiles/{name}/trades/:
+    get:
+      tags:
+        - profiles
+      summary: Get historical trades of profile
+      description: Get historical trades of profile
+      parameters:
+        - in: path
+          name: name   # Note the name is the same as in the path
+          required: true
+          schema:
+            type: string
+            example: "Denis"
+          description: The profile name
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Trades'
   /profiles/{name}/historical-data/:
     get:
       tags:
@@ -60,7 +81,7 @@ paths:
       description: Get **historical data** in format of candlesticks with particular **timeframe**
       parameters:
         - in: path
-          name: name   # Note the name is the same as in the path
+          name: name
           required: true
           schema:
             type: string
@@ -117,6 +138,29 @@ components:
           format: date-time
         configuration:  # TODO
           type: object
+    Trades:
+      type: array
+      items:
+        type: object
+        required:
+          - time
+          - price
+          - side
+          - size
+        properties:
+          time:
+            type: string
+            format: date-time
+          price:
+            type: number
+            format: float
+            example: 17015.5
+          side:
+            type: string
+            example: "Buy"
+          size:
+            type: number
+            example: 500
     HistoricalData:
           type: array
           items:

@@ -1,4 +1,4 @@
 #!/bin/bash
 
 npm i swagger-typescript-api
-npx swagger-typescript-api -p ../../api/TViewer-api.yaml -o ./src/components -n Api.ts
+npx swagger-typescript-api -p ../../api/TViewer-api.yaml -o ./src/components/API -n Api.ts
