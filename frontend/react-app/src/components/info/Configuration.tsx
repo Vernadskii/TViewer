@@ -1,7 +1,12 @@
-function Configuration(): JSX.Element | null {
+interface Name {
+    name: string
+ }
+
+function Configuration({name}: Name): JSX.Element | null {
+    console.log("Configuration. Name is " + `${name}`);
     return (
         <>  
-            <p>Text configuartion</p>
+            <p>Text configuartion {name}</p>
         </>
     );
 }

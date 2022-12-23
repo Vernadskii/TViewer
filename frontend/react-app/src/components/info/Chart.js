@@ -249,8 +249,10 @@ export default function Chart(){
         }],
         options: {
           chart: {
-            type: 'candlestick',
-            height: 350
+            group: 'social',
+            id: `basic-bar ${Math.random()}`,
+            // type: 'candlestick',
+            // height: 350
           },
           title: {
             text: 'CandleStick Chart',
@@ -273,7 +275,7 @@ export default function Chart(){
               options={state.options}
               series={state.series}
               type="candlestick"
-              width="300"
+              width='100%'
               height="350"
             />
         </div>

@@ -3,9 +3,13 @@ import CandlestickTimeframe from "./settings/CandlestickTimeframe";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-function SettingsPanel(): JSX.Element | null {
+
+function SettingsPanel({onSubmit}: any): JSX.Element | null {
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        console.log("Submit result from SettingsPanel")
+        let profile_name = (event.currentTarget[0] as HTMLSelectElement).options[
+            (event.currentTarget[0] as HTMLSelectElement).selectedIndex].text;
+        let timeframe_value = (event.currentTarget[1] as HTMLInputElement).value;
+        onSubmit({ profile: profile_name, timeframe: timeframe_value });
         event.preventDefault();
       };
 
@@ -23,5 +27,6 @@ function SettingsPanel(): JSX.Element | null {
         </>
     );
 }
+
 
 export default SettingsPanel;

@@ -3,7 +3,7 @@ import InputGroup from 'react-bootstrap/InputGroup';
 
 function CandlestickTimeframe(): JSX.Element | null {
     function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-        console.log(`Changed value ${event.target.value}`);
+        // console.log(`Changed value ${event.target.value}`);
       }
 
     return (

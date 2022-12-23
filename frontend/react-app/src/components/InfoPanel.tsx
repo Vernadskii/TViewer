@@ -1,12 +1,20 @@
 import ChartsPanel from "./info/ChartsPanel";
 import Configuration from "./info/Configuration";
 
-function InfoPanel(): JSX.Element | null {
+export type Settings = {
+    settings: {
+        profile: string;
+        timeframe: number;
+    }
+  };
+  
+function InfoPanel({settings}: Settings): JSX.Element | null {
+    // console.log(`InfoPanel. settings is ${JSON.stringify(settings)}`);
     return (
         <>
             <h2>InfoPanel</h2>
-            <Configuration/>
-            <ChartsPanel/>
+            <Configuration name={settings.profile}/>
+            <ChartsPanel settings={settings}/>
         </>
     );
 }
