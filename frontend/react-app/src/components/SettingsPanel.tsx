@@ -17,12 +17,15 @@ function SettingsPanel({onSubmit}: any): JSX.Element | null {
         <>
             <h2>SettingsPanel</h2>
             <Form onSubmit={handleSubmit}>
+
                 <Profile/>
+
                 <CandlestickTimeframe/>
 
                 <Button variant="primary" type="submit">
                     Update
                 </Button>
+                
             </Form>
         </>
     );

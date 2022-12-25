@@ -9,7 +9,6 @@ export type Settings = {
   };
   
 function InfoPanel({settings}: Settings): JSX.Element | null {
-    // console.log(`InfoPanel. settings is ${JSON.stringify(settings)}`);
     return (
         <>
             <h2>InfoPanel</h2>
