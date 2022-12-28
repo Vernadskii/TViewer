@@ -2,7 +2,8 @@ import Profile from "./settings/Profile";
 import CandlestickTimeframe from "./settings/CandlestickTimeframe";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-
+import { QueryClient, QueryClientProvider } from 'react-query'
+const queryClient = new QueryClient()
 
 function SettingsPanel({onSubmit}: any): JSX.Element | null {
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -16,17 +17,15 @@ function SettingsPanel({onSubmit}: any): JSX.Element | null {
     return (
         <>
             <h2>SettingsPanel</h2>
-            <Form onSubmit={handleSubmit}>
-
-                <Profile/>
-
-                <CandlestickTimeframe/>
-
-                <Button variant="primary" type="submit">
-                    Update
-                </Button>
-                
-            </Form>
+            <QueryClientProvider client={queryClient}>
+                <Form onSubmit={handleSubmit}>
+                    <Profile/>
+                    <CandlestickTimeframe/>
+                    <Button variant="primary" type="submit">
+                        Update
+                    </Button>
+                </Form>
+            </QueryClientProvider>
         </>
     );
 }

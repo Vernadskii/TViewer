@@ -1,7 +1,6 @@
 import {default as ApexChart} from "react-apexcharts";
-import { Api, Profiles, HttpResponse} from "../Api";
+import { useHistoricalDataDetail } from '../API/queries';
 import { useState, useEffect } from 'react';
-
 import type { Settings } from "../InfoPanel";
 import { ApexOptions } from "apexcharts";
 
@@ -16,20 +15,15 @@ export default function Chart({settings}: ChartSettings){
     x: any;
     y: any;
   }[]>([]);
+  const { isLoading, error, data} = useHistoricalDataDetail(
+    settings.profile, {indicator: settings.chartName, timeframe: settings.timeframe});
 
-  async function getPlotData() /*:Promise<string[]>*/{
-    var api = new Api();
-    const response = await api.profiles.historicalDataDetail(
-      settings.profile, 
-      {indicator: settings.chartName, timeframe: settings.timeframe},
-      {baseUrl: "http://localhost:30000"});
-    return response.data;
-  };
-
-  function updatePlotData(){
-    getPlotData().then(rawPlotData => {
-      var prepared_data = []
-      for (const candle of rawPlotData)
+  useEffect(() => {
+    console.log(`Chart settings ${JSON.stringify(settings)}`);
+    var prepared_data = [];
+    if (data)
+    {
+      for (const candle of data)
       {
         prepared_data.push(
             {
@@ -38,14 +32,12 @@ export default function Chart({settings}: ChartSettings){
             }
           );
       }
-      setData(prepared_data)
-    })
-  };
-
-  useEffect(() => {
-    console.log(`Chart settings ${JSON.stringify(settings)}`);
-    updatePlotData();
+      setData(prepared_data);
+    }
   }, [settings]);
+
+  if (isLoading) return <p>'Loading...'</p>;
+  if (error) return <p>'An error has occurred'</p>;
 
   var options: ApexOptions = {
     chart: {
