@@ -39,5 +39,6 @@ export const useHistoricalDataDetail = (profile: string, queries: any) => {
     },
     refetchOnWindowFocus: false,
     refetchInterval: 300000, // 5 minutes = 300 seconds = 300000 ms
+    staleTime: 120000, // 2 minutes
   });
 };

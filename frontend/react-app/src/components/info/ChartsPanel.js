@@ -18,7 +18,7 @@ function ChartsPanel({settings}/*:Settings*/) /*:JSX.Element | null*/ {
                 Object.assign(settings_copy, settings); 
                 settings_copy.chartName = plotName;
                 console.log(settings_copy);
-                gatherRows.push(<Chart settings={settings_copy}/>)
+                gatherRows.push(<Chart settings={settings_copy} key={plotName}/>)
             }
             setRows(gatherRows);
         }

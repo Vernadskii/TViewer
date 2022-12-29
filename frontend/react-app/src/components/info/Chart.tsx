@@ -19,7 +19,6 @@ export default function Chart({settings}: ChartSettings){
     settings.profile, {indicator: settings.chartName, timeframe: settings.timeframe});
 
   useEffect(() => {
-    console.log(`Chart settings ${JSON.stringify(settings)}`);
     var prepared_data = [];
     if (data)
     {
@@ -32,20 +31,21 @@ export default function Chart({settings}: ChartSettings){
             }
           );
       }
+      console.log(`Chart settings ${JSON.stringify(settings)}. Updated data! ${prepared_data}`);
       setData(prepared_data);
     }
-  }, [settings]);
+  }, [settings, data]);
 
   if (isLoading) return <p>'Loading...'</p>;
   if (error) return <p>'An error has occurred'</p>;
 
   var options: ApexOptions = {
     chart: {
-      group: 'social',
-      id: `basic-bar ${Math.random()}`,
+      // group: 'social',
+      id: `basic-bar ${settings.chartName}`,
     },
     title: {
-      text: 'CandleStick Chart',
+      text: settings.chartName,
       align: 'left'
     },
     xaxis: {
@@ -63,8 +63,9 @@ export default function Chart({settings}: ChartSettings){
     }];
 
   return (
-    <div id="chart">
+    <div id="chart" key={settings.chartName}>
         <ApexChart
+          key={settings.chartName}
           options={options}
           series={series}
           type="candlestick"
