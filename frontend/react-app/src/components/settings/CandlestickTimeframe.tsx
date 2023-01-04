@@ -13,7 +13,7 @@ function CandlestickTimeframe(): JSX.Element | null {
                 <InputGroup className="mb-3">
                     <Form.Control type="number" onChange={handleChange} min='1' max='3600' placeholder="time in seconds"
                         defaultValue="60" required/>
-                    <InputGroup.Text id="basic-addon2">seconds</InputGroup.Text>
+                    <InputGroup.Text id="basic-addon2">minutes</InputGroup.Text>
                 </InputGroup>
             </Form.Group>
         </>
