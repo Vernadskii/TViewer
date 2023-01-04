@@ -61,10 +61,10 @@ async def handle_profiles_name_historical_data_get(
                      MAX(`Value`) as max_value,
                      MIN(`Time`) as min_created,
                      MAX(`Time`) as max_created
-                    FROM {indicator}
+                    FROM `{indicator}`
                     GROUP BY grp_id
-        ) t JOIN {indicator} indicator_min ON indicator_min.`Time` = t.min_created
-            JOIN {indicator} indicator_max ON indicator_max.`Time` = t.max_created
+        ) t JOIN `{indicator}` indicator_min ON indicator_min.`Time` = t.min_created
+            JOIN `{indicator}` indicator_max ON indicator_max.`Time` = t.max_created
             GROUP BY t.grp_id
             ORDER BY grp_id ASC;
         """)
