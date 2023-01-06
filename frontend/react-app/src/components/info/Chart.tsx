@@ -31,7 +31,7 @@ export default function Chart({settings}: ChartSettings){
             }
           );
       }
-      console.log(`Chart settings ${JSON.stringify(settings)}. Updated data! ${prepared_data}`);
+      // console.log(`Chart settings ${JSON.stringify(settings)}. Updated data! ${prepared_data}`);
       setData(prepared_data);
     }
   }, [settings, data]);
@@ -63,14 +63,14 @@ export default function Chart({settings}: ChartSettings){
     }];
 
   return (
-    <div id="chart" key={settings.chartName}>
+    <div id="chart" key={settings.chartName} className="h-auto">
         <ApexChart
           key={settings.chartName}
           options={options}
           series={series}
           type="candlestick"
           width='100%'
-          height="350"
+          height="500px"
         />
     </div>
   );

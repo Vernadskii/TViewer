@@ -12,8 +12,7 @@ classifiers =
 
 [options]
 install_requires =
-    SQLAlchemy >= 1.4.42
-    PyMySQL >= 1.0.2
+    mysql-connector-python == 8.0.31
     fastapi[all] >= 0.85.0
     uvicorn >= 0.13.4
 setup_requires =
@@ -27,4 +26,4 @@ where=src
 
 [options.entry_points]
 console_scripts =
-    TViewer-server = TViewer.start:start_server
+    {{packageName}} = {{packageName}}.start:start_server

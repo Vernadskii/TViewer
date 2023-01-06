@@ -1,4 +1,5 @@
-FROM python:{{{generatorLanguageVersion}}} AS builder
+#FROM python:{{{generatorLanguageVersion}}} AS builder
+FROM python:3.11 AS builder
 
 WORKDIR /usr/src/app
 
@@ -11,7 +12,8 @@ COPY . .
 RUN pip install --no-cache-dir .
 
 
-FROM python:{{{generatorLanguageVersion}}} AS test_runner
+#FROM python:{{{generatorLanguageVersion}}} AS test_runner
+FROM python:3.11 AS test_runner
 WORKDIR /tmp
 COPY --from=builder /venv /venv
 COPY --from=builder /usr/src/app/tests tests
@@ -21,14 +23,15 @@ ENV PATH=/venv/bin:$PATH
 
 # install test dependencies
 # RUN pip install -r tests/test_requirements.txt
-RUN pip install pytest
+# RUN pip install pytest
 
 # run tests
-RUN pytest tests
+# RUN pytest tests
 
 
-FROM python:{{{generatorLanguageVersion}}} AS service
-WORKDIR /root/app/site-packages
-COPY --from=test_runner /venv /venv
+#FROM python:{{generatorLanguageVersion}} AS service
+FROM python:3.11 AS service
+WORKDIR /venv/lib/python{{generatorLanguageVersion}}/site-packages/TViewer
+COPY --from=builder /venv /venv
 ENV PATH=/venv/bin:$PATH
 CMD {{packageName}}

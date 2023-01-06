@@ -5,11 +5,6 @@ interface Name {
  }
 
 function Configuration({name} :Name): JSX.Element | null {
-    
-    useEffect(() => {
-        console.log("Test config update");
-      });
-
     return (
         <>  
             <p>Text configuartion {name}</p>
