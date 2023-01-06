@@ -14,7 +14,7 @@ function App(){
   }
 
   return (
-    <Container fluid>
+    <Container fluid className="vh-100">
       <Row>
         <Col sm={5} md={3} xl={2}><SettingsPanel onSubmit={handleSubmit}/></Col>
         <Col sm={7} md={9} xl={10}><InfoPanel settings={settings}/></Col>
