@@ -9,5 +9,7 @@ services:
   frontend:
     build:
       context: frontend/react-app/
+    environment:
+      - BACKEND_HOST="backend:8090"
     ports:
       - "3000:3000"
