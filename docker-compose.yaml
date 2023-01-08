@@ -10,6 +10,6 @@ services:
     build:
       context: frontend/react-app/
     environment:
-      - BACKEND_HOST="backend:8090"
+      - REACT_APP_BACKEND_HOST="http://backend:8090"
     ports:
       - "3000:3000"

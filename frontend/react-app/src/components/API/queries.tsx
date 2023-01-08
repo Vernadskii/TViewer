@@ -3,7 +3,7 @@ import { useQuery } from "react-query";
 import { Api } from "./Api";
 
 const api = new Api();
-const baseBackendUrl: string | undefined = process.env.BACKEND_HOST; //"http://localhost:30000";
+const baseBackendUrl: string | undefined = process.env.REACT_APP_BACKEND_HOST;
 export const useProfiles = () => {
     return useQuery({
       queryKey: ["get-profiles"],
