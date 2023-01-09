@@ -5,11 +5,11 @@ services:
       context: backend/server/
       target: service
     ports:
-      - "8080:8080"
+      - "8090:8090"
   frontend:
     build:
       context: frontend/react-app/
     environment:
-      - REACT_APP_BACKEND_HOST="http://backend:8090"
+      - REACT_APP_BACKEND_HOST=http://localhost:8090
     ports:
       - "3000:3000"
