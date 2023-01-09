@@ -1,8 +1,9 @@
 import {default as ApexChart} from "react-apexcharts";
-import { useHistoricalDataDetail } from '../API/queries';
+import { useHistoricalDataDetail, useTrades } from '../API/queries';
 import { useState, useEffect } from 'react';
 import type { Settings } from "../InfoPanel";
 import { ApexOptions } from "apexcharts";
+import { Trades } from "../API/Api";
 
 export type ChartSettings =  Settings & {
   settings: {
@@ -10,13 +11,43 @@ export type ChartSettings =  Settings & {
   }
 }
 
+function turnTradesIntoAnnotations(trades: Trades | undefined): PointAnnotations[] {
+
+  return [
+      {
+        x: new Date('2023-01-09 09:17:42.646').getTime(),
+        y: 17300,
+        marker: {
+          size: 6,
+          fillColor: "#fff",
+          strokeColor: "#2698FF",
+          radius: 2
+        },
+        label: {
+          borderColor: "#FF4560",
+          offsetY: 0,
+          style: {
+            color: "#fff",
+            background: "#FF4560"
+          },
+
+          text: "Point Annotation (XY)"
+        }
+      }
+    ];
+}
+
 export default function Chart({settings}: ChartSettings){
-  const [plotData, setData] = useState<{
+  const [plotData, setPlotData] = useState<{
     x: any;
     y: any;
   }[]>([]);
+  const [annotationData, setAnnotationData] = useState<PointAnnotations[]>([]);
+
   const { isLoading, error, data} = useHistoricalDataDetail(
     settings.profile, {indicator: settings.chartName, timeframe: settings.timeframe});
+  
+  const { isLoading: isLoadingTrades, error: isErrorTrades, data: dataTrades} = useTrades(settings.profile);
 
   useEffect(() => {
     var prepared_data = [];
@@ -31,38 +62,17 @@ export default function Chart({settings}: ChartSettings){
             }
           );
       }
-      // console.log(`Chart settings ${JSON.stringify(settings)}. Updated data! ${prepared_data}`);
-      setData(prepared_data);
+      setPlotData(prepared_data);
+      setAnnotationData(turnTradesIntoAnnotations(dataTrades));
     }
   }, [settings, data]);
 
-  if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>An error has occurred</p>;
+  if (isLoading || isLoadingTrades) return <p>Loading...</p>;
+  if (error || isErrorTrades) return <p>An error has occurred</p>;
 
   var options: ApexOptions = {
     annotations: {
-      points: [
-        {
-          x: new Date('2023-01-09 09:17:42.646').getTime(), //"2023-01-09 09:17:42.646",
-          y: 17300,
-          marker: {
-            size: 6,
-            fillColor: "#fff",
-            strokeColor: "#2698FF",
-            radius: 2
-          },
-          label: {
-            borderColor: "#FF4560",
-            offsetY: 0,
-            style: {
-              color: "#fff",
-              background: "#FF4560"
-            },
-  
-            text: "Point Annotation (XY)"
-          }
-        }
-      ]
+      points: annotationData
     },
     chart: {
       // group: 'social',
