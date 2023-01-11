@@ -12,7 +12,35 @@ export type ChartSettings =  Settings & {
 }
 
 function turnTradesIntoAnnotations(trades: Trades | undefined): PointAnnotations[] {
-
+  var result = [];
+  if (trades)
+  {
+    for (const candle of trades)
+        {
+          result.push(
+              {
+                x: new Date('2023-01-09 09:17:42.646').getTime(),
+                y: 17300,
+                marker: {
+                  size: 6,
+                  fillColor: "#fff",
+                  strokeColor: "#2698FF",
+                  radius: 2
+                },
+                label: {
+                  borderColor: "#FF4560",
+                  offsetY: 0,
+                  style: {
+                    color: "#fff",
+                    background: "#FF4560"
+                  },
+        
+                  text: "Point Annotation (XY)"
+                }
+              }
+            );
+        }
+  }
   return [
       {
         x: new Date('2023-01-09 09:17:42.646').getTime(),
