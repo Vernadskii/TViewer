@@ -1,0 +1,5 @@
+# example of usage: docker compose -f docker-compose.yml -f production.yml up -d
+backend:
+  restart: unless-stopped
+frontend:
+  restart: unless-stopped
