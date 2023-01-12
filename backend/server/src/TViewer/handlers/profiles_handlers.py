@@ -71,6 +71,8 @@ async def handle_profiles_name_historical_data_get(
         database=profile_name
     )
     mycursor = mydb.cursor()
+    mycursor.execute("SET sql_mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,"
+                     "ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';")
     mycursor.execute(f"""
         SELECT t.grp_id as `grp_id`,
            t.min_value,
