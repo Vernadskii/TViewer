@@ -16,11 +16,8 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
 
-    - name: Generate API with libraries list
-      run: |
-        cd backend
-        source generate-source
-        cd server
+    - name: Generate API
+      run: source generate-source
 
     - name: Install dependencies
       run: |
