@@ -1,0 +1,7 @@
+#!/bin/bash
+
+echo "Generating backend API..."
+source backend/generate-source
+
+echo "Generating frontend API..."
+source frontend/react-app/generate-API
