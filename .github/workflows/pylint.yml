@@ -18,6 +18,8 @@ jobs:
 
     - name: Generate API with libraries list
       run: |
+        pwd
+        ls
         source backend/generate-source
         cd backend/server
 
