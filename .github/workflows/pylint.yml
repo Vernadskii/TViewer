@@ -20,6 +20,7 @@ jobs:
       run: |
         pwd
         ls
+        ls ./openapi-generator 
         source backend/generate-source
         cd backend/server
 
